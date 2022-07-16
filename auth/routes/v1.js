@@ -40,10 +40,11 @@ routers.get('/:model/:id',bearer,acl('read'),async(req,res)=>{
 
 })
 
-routers.put('/:model/:id',bearer, acl('updateHisPosts'),async(req,res)=>{
+routers.put('/:userid/:model/:id',bearer, acl('updateHisPosts'),async(req,res)=>{
+    const userid = parseInt(req.params.userid);
     const id = parseInt(req.params.id);
     let updateModel = req.body; 
-    let updatedModel = await req.model.updateRecord(updateModel,id);
+    let updatedModel = await req.model.updateRecord(userid,updateModel,id);
     if(updatedModel[0]!=0){
         res.status(201).json(updatedModel[1]);
     }else{
@@ -51,9 +52,10 @@ routers.put('/:model/:id',bearer, acl('updateHisPosts'),async(req,res)=>{
     }
   
 })
-routers.delete('/:model/:id',bearer, acl('deleteHisPosts'),async(req,res)=>{
+routers.delete('/:userid/:model/:id',bearer, acl('deleteHisPosts'),async(req,res)=>{
+    const userid = parseInt(req.params.userid);
     let id = parseInt(req.params.id);
-    let deletedModel = await req.model.removeRecord(id);
+    let deletedModel = await req.model.removeRecord(userid,id);
     if(deletedModel){
         res.send("Deleted Successfully");
         res.status(204);

@@ -11,12 +11,18 @@ class Collection {
   }
 
   async createRecord(userid,obj) {
-    try {
-        let newRecord = await this.model.create(obj,{where:{userID:userid},returning: true});
-        return newRecord;
-    } catch (e) {
-        console.error("Error in creating a new record in model ", this.model)
+    console.log("userid is",userid,"userID is",obj.usersID,"Obj is",obj);
+    if(userid===obj.usersID){
+        try {     
+            let newRecord = await this.model.create(obj);
+            return newRecord;
+        } catch (e) {
+            console.error("Error in creating a new record in model ", this.model)
+        } 
+    } else{
+        console.error("You must sign in first ! ", this.model)
     }
+    
 } 
 
 async readRecord(dataID) {
@@ -37,7 +43,8 @@ async readRecord(dataID) {
 
 }
 
-async updateRecord(obj,dataID) {
+async updateRecord(userid,obj,dataID) {
+    if(userid===obj.usersID){
   try {
     let updated = await this.model.update(obj,{where:{id:dataID},returning: true});
     return updated;
@@ -45,19 +52,22 @@ async updateRecord(obj,dataID) {
     console.error("Error in updating record in model ", this.model)
 }
   }
-    
+} 
 
 
-async removeRecord(dataID) {
+async removeRecord(userid,dataID) {
     if (!dataID) {
         throw new Error('No id provided for model ', this.model)
     }
+    let record = await this.model.findOne({ where: { id: dataID } });
+    if(userid===record.usersID){
     try {
         let deleted = await this.model.destroy({ where: { id: dataID } });
         return deleted;
     } catch (e) {
         console.error('Error in deleting record in model ', this.model);
     }
+}
 }
 }
 
