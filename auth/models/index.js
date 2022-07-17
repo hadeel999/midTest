@@ -21,13 +21,13 @@ const users = usersModel(sequelize,DataTypes);
 
 
 users.hasMany(houses, {
-    foreignKey: "usersID",
-    sourceKey: "id"
+    foreignKey: "user_name",
+    sourceKey: "username"
 });
 
 houses.belongsTo(users, {
-    foreignKey: "usersID",
-    targetKey: "id",
+    foreignKey: "user_name",
+    targetKey: "username",
 });
 
 

@@ -40,9 +40,9 @@ sequelize.define('realestate', {
         type: DataTypes.STRING,
         required: true
     },*/
-    usersID: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+    user_name: {
+        type: DataTypes.STRING,
+        allowNull: true,
     }
 });
 
