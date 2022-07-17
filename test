@@ -1,0 +1,24 @@
+/*
+{
+    "username":"ll",
+        "password":"123",
+    "role": "admin"
+}
+
+
+
+
+
+{
+    "process":"sell",
+    "category":"houses",
+    "describtion": "منزل  ",
+    "area": "170 m2",
+    "location": "اربد",
+    "price": "$150,000",
+    "owner": "mohammad alshraideh",
+    "phone": "0795956190",
+    "details":"details",
+    "usersID":1
+}
+*/
