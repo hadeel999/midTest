@@ -141,6 +141,44 @@ async readDashboard(username) {
 
 }
 
+async getSearch(input) {
+    try {
+        let record = null;
+
+        let houses=/ho/gm;
+        let villas=/vi/gm;
+        let apartments=/ap/gm;
+        let farms=/fa/gm;
+        let lands=/la/gm;
+
+        if (input) {
+            if(houses.test(input)){
+                record = await this.model.findAll({ where: { category: "houses" } });
+                return record;
+            }else if(villas.test(input)){
+                record = await this.model.findAll({ where: { category: "villas" } });
+                return record;
+            }else if(apartments.test(input)){
+                record = await this.model.findAll({ where: { category: "apartments" } });
+                return record;
+            }else if(farms.test(input)){
+                record = await this.model.findAll({ where: { category: "farms" } });
+                return record;
+            }else if(lands.test(input)){
+                record = await this.model.findAll({ where: { category: "lands" } });
+                return record;
+            }
+        }
+        else {
+            record = await this.model.findAll();
+            return record;
+        }
+
+    } catch (e) {
+        console.error("Error in reading record in model ", this.model)
+    }
+
+}
 
 async updateRecord(username,obj,dataID) {
     let updated=null;

@@ -56,6 +56,20 @@ routers.get('/home/:model/category/:category',async(req,res)=>{
 })
 
 
+routers.get('/home/:model/search/:input',async(req,res)=>{
+    const input = req.params.input;
+    console.log("input is", input)
+    let oneData = await req.model.getSearch(input);
+    if(oneData){
+            res.status(200).send(oneData);
+    }else{
+        res.status(403).send(`Category must be one of these: 'houses','apartments','villas','farms','lands'.`);
+    }
+
+})
+
+
+
 routers.get('/home/:model/location/:location',async(req,res)=>{
     const location = req.params.location;
     console.log("location is", location)
