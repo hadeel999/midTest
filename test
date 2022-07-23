@@ -10,16 +10,16 @@
 
 
 {
-    "process":"sell",
+    "process":"rent",
     "category":"houses",
     "describtion": "منزل  ",
-    "area": "170 m2",
+    "area": "100 m2",
     "location": "اربد",
     "price": "$150,000",
     "owner": "mohammad alshraideh",
     "phone": "0795956190",
     "details":"details",
-    "usersID":1
+    "images":{}
 }
 
 home/realestate/process/all/category/houses/location/Amman
